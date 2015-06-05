@@ -1,0 +1,48 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+
+
+     
+
+    
+    <div class="jumbotron">
+        <div class="row">
+            <!-- Categories -->
+            <div class="col-sm-4">
+                <h4 class="inline">Categories</h4>                
+                <div class="container border-top">
+               <ul class="list-group list-hover">
+                   {% for category in categories %}
+                        <a href="/category/{{category.id}}/"><li class="list-group-item list-link" style="border:0;"><span class="badge">{{counts[category.id]}}</span> {{category.name}}</li></a>
+                   {% endfor %}
+                </ul>
+                </div>
+                 
+            </div>
+            <!-- Recent Items -->
+            <div class="col-sm-8">
+                <h4 class="inline">Recent Items</h4>                
+                <div class="container border-top">
+                    {% if items[0] %}
+                        <ul class="list-group">
+                        {% for item in items %}
+                            <li class="list-group-item"><a href="{{url_for('showItem', item_id=item.id)}}">{{item.name}}</a> - {{item.category.name}} - <span class="it-sm">{{item.price}}</span><br/>{{item.description}}</li>
+                        {% endfor %}
+                        </ul>
+                    {% else %}
+                        <div class="well well-sm">No items found for this catalog.</div>
+                    {% endif %}
+                </div>
+                
+            </div>
+        </div>    
+
+    
+    
+    
+    
+    </div>
+    
+    
+{% endblock %}

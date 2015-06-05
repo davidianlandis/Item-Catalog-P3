@@ -1,0 +1,40 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+
+
+            
+    <div class="jumbotron">
+        <div class="row">
+            <!-- Categories -->
+            <div class="col-sm-8">
+                <h4 class="inline">New Category</h4>
+                <a href="{{url_for('catalog')}}" class="btn btn-warning btn-sm inline leftmarge-med">Cancel</a>
+                
+                <div class="container border-top">
+                    
+                    <form role="form" method="POST" action="{{url_for('newCategory')}}">
+                        <div class="form-group">
+                            <label for="name">New Category Name:</label>
+                            <input type="text" class="form-control" id="name" name="name" value="{% if name %}{{name}}{% endif %}"/>
+                            
+                        </div>    
+                        <button type="submit" value="submit" class="btn btn-success">
+                            <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> ADD
+                        </button>
+                    </form>
+                </div>
+                
+                 
+            </div>
+
+        </div>    
+
+    
+    
+    
+    
+    </div>
+    
+    
+{% endblock %}

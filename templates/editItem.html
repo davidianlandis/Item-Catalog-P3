@@ -1,0 +1,54 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+
+            
+    <div class="jumbotron">
+        <div class="row">
+            <div class="col-sm-8">
+                <h4 class="inline">Edit Item</h4>
+                {% if category_id %}
+                <a href="{{url_for('showCategory', category_id = category_id)}}" class="btn btn-warning btn-sm inline leftmarge-med">Cancel</a>
+                {% else %}
+                <a href="{{url_for('catalog')}}" class="btn btn-warning btn-sm inline leftmarge-med">Cancel</a>
+                {% endif %}
+                
+                <div class="container border-top">
+                    
+                    <form role="form" method="POST" action="{{url_for('editItem',item_id = item.id)}}">
+                        <div class="form-group">
+                            <label for="category_id">Category:</label>
+                            <select class="form-control" id="category_id" name="category_id">
+                                <option value="">-SELECT ONE-</option>
+                                {% for category in categories %}
+                                <option value="{{category.id}}" {% if item.category.id==category.id %} SELECTED {% endif %}>{{category.name}}</option>
+                                {% endfor %}
+                            </select>
+                            <label for="name">Item Name:</label>
+                            <input type="text" class="form-control" id="name" name="name" value="{% if item.name %}{{item.name}}{% endif %}"/>
+                            <label for="description">Description:</label>
+                            <textarea class="form-control" id="description" name="description">{% if item.description %}{{item.description}}{% endif %}</textarea>
+                            <label for="price">Price:</label>
+                            <input type="text" class="form-control" id="price" name="price" value="{% if item.price %}{{item.price}}{% endif %}"/>
+                            <label for="picture">Picture URL:</label>
+                            <input type="text" class="form-control" id="picture" name="picture" value="{% if item.picture %}{{item.picture}}{% endif %}"/>
+                        </div>    
+                        <button type="submit" value="submit" class="btn btn-success">
+                            <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> SAVE
+                        </button>
+                    </form>
+                </div>
+                
+                 
+            </div>
+
+        </div>    
+
+    
+    
+    
+    
+    </div>
+    
+    
+{% endblock %}

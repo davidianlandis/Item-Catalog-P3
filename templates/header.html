@@ -1,0 +1,57 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="{{url_for('catalog')}}">Catalog App</a>
+    </div>
+    <div>
+        <ul class="nav navbar-nav navbar-right">
+        {%if 'username' not in session %}
+            <li><a class="btn-info" href="{{url_for('showLogin')}}"><span class="glyphicon glyphicon-log-in"></span> Sign In</a></li>
+        {% else %}
+            <li><div class="navbar-text">
+                <img title="Welcome, {{session['username']}}!" src="{{session['picture']}}" style="width:30px;height:30px;border-radius:15px;-webkit-border-radius:15px;moz-border-radius:15px; margin:-15px 0px -15px 0px;" />
+            </div></li>
+            <li><a class="btn-default" href="{{url_for('disconnect')}}"><span class="glyphicon glyphicon-log-in"></span> Sign Out</a></li>
+        {% endif %}
+        </ul>
+    </div>
+
+        
+  </div>
+</nav>
+<script>
+$(document).ready(function(){$('.dropdown-menu').find('form').click(function (e) {e.stopPropagation();});});
+</script>
+
+
+    <!-- show any flash messages -->
+    <div class = 'flash'>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="panel panel-success">
+            <div class="panel-heading">
+                <ul>
+            {% for message in messages %}
+                <li> <strong> {{ message }} </strong> </li>
+            {% endfor %}
+            </ul>
+            </div>
+            </div>
+        {% endif %}
+        {% endwith %}
+    </div>
+    
+    <!-- show any error messages -->
+    <div class = 'flash'>
+        {% if errors %}
+            <div class="panel panel-danger">
+            <div class="panel-heading">
+                <ul>
+            {% for error in errors %}
+                <li> <strong> {{ error }} </strong> </li>
+            {% endfor %}
+            </ul>
+            </div>
+            </div>
+        {% endif %}
+    </div>    

@@ -1,0 +1,26 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+
+            
+    <div class="jumbotron">
+        <div class="row">
+            <div class="col-sm-8">
+                <h4 class="inline">{{item.name}}</h4>
+
+                <div class="container border-top">
+                    {{item.name}} - <a href="{{url_for('showCategory', category_id = item.category.id)}}">{{item.category.name}}</a>
+                    <br/><br/>
+                    Price: {{item.price}}
+                    <br/><br/>
+                    {% if item.picture %}<img src="{{item.picture}}" class="med"/><br/><br/>{% endif %}
+                    {{item.description}}
+                </div>
+            </div>
+
+        </div>    
+
+    </div>
+    
+    
+{% endblock %}

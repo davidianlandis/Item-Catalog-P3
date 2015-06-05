@@ -1,0 +1,36 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+
+            
+    <div class="jumbotron">
+        <div class="row">
+            <!-- Categories -->
+            <div class="col-sm-8">
+                <h4 class="inline">Delete Item</h4>
+                <a href="{{url_for('showItem', item_id = item.id)}}" class="btn btn-warning btn-sm inline leftmarge-med">Cancel</a>
+                
+                <div class="container border-top">
+                    
+                    <form role="form" method="POST" action="{{url_for('deleteItem', item_id = item.id)}}">
+                        <h3>Are you sure you want to delete {{item.name}}?</h3>
+                        <button type="submit" value="submit" class="btn btn-danger">
+                            <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span> DELETE
+                        </button>
+                        <input type="hidden" name="nonce" value="{{nonce}}" />
+                    </form>
+                </div>
+                
+                 
+            </div>
+
+        </div>    
+
+    
+    
+    
+    
+    </div>
+    
+    
+{% endblock %}

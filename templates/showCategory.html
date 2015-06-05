@@ -1,0 +1,80 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+
+
+     
+
+    
+    <div class="jumbotron">
+        <div class="row">
+            <!-- Categories -->
+            <div class="col-sm-4">
+                <h4 class="inline">Categories</h4>
+                <a href="{{url_for('newCategory')}}" class="btn btn-success btn-sm inline leftmarge-med">New Category</a>
+                
+                <div class="container border-top">
+               <ul class="list-group list-hover">
+                   {% for cat in categories %}
+                        <a href="/category/{{cat.id}}/"><li class="list-group-item list-link{% if category.id==cat.id %} current{% endif %}" style="border:0;"><span class="badge">{{counts[cat.id]}}</span> {{cat.name}}</li></a>
+                   {% endfor %}
+                </ul>
+                </div>
+                 
+            </div>
+            <!-- Recent Items -->
+            <div class="col-sm-8">
+            
+                <h4 class="inline">{{category.name}}</h4>
+                <a href="{{url_for('newItem', category_id = category.id)}}" class="btn btn-success btn-sm inline leftmarge-med" title="New {{category.name}} Item">New Item</a>
+                <div class="inline pull-right">
+                    <a href="{{url_for('editCategory', category_id=category.id)}}" class="btn btn-default btn-xs">EDIT CATEGORY</a>
+                    <a href="{{url_for('deleteCategory', category_id=category.id)}}" class="btn btn-danger btn-xs">DELETE CATEGORY</a>
+                </div>
+                
+                <div class="container border-top">
+                    {% if items[0] %}
+                    <div class="well well-sm">Below is a list of items for purchase in the exiting category of {{category.name}}. </div>
+                    
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th style="width:35%;">Name</th>
+                                <th style="width:35%;">Description</th>
+                                <th style="width:15%;"> </th>
+                                <th style="width:15%;">Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for item in items %}
+                            <tr>
+                                <td>
+                                    <a href="{{url_for('showItem', item_id = item.id)}}" title="View Item">{{item.name}}</a>
+                                    <br/>
+                                    <div class="pull-right">
+                                        <a href="{{url_for('editItem', item_id = item.id)}}" title="Edit Item"><span class="glyphicon glyphicon-pencil"></span></a>
+                                        <a href="{{url_for('deleteItem', item_id = item.id)}}" title="Delete Item"><span class="glyphicon glyphicon-trash"></span></a>
+                                    </div>
+                                </td>
+                                <td class="reg-sm">{{item.description}}</td>
+                                <td>{% if item.picture %}<img src="{{item.picture}}" class="table-img thumb" />{% endif %}</td>
+                                <td>{{item.price}}</td>
+                        {% endfor %}
+                        </tbody>
+                    </table>                   
+                    {% else %}
+                    <div class="well well-sm">No items currently exist in this category.</div>
+                    {% endif %}
+                </div>
+                
+            </div>
+        </div>    
+
+    
+    
+    
+    
+    </div>
+    
+    
+{% endblock %}

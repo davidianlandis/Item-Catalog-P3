@@ -1,0 +1,39 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+
+            
+    <div class="jumbotron">
+        <div class="row">
+            <!-- Categories -->
+            <div class="col-sm-8">
+                <h4 class="inline">Edit Category</h4>
+                <a href="{{url_for('showCategory', category_id = category.id)}}" class="btn btn-warning btn-sm inline leftmarge-med">Cancel</a>
+                
+                <div class="container border-top">
+                    
+                    <form role="form" method="POST" action="{{url_for('editCategory',category_id = category.id)}}">
+                        <div class="form-group">
+                            <label for="name">Category Name:</label>
+                            <input type="text" class="form-control" id="name" name="name" value="{% if name %}{{name}}{% endif %}"/>
+                            
+                        </div>    
+                        <button type="submit" value="submit" class="btn btn-success">
+                            <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> SAVE
+                        </button>
+                    </form>
+                </div>
+                
+                 
+            </div>
+
+        </div>    
+
+    
+    
+    
+    
+    </div>
+    
+    
+{% endblock %}

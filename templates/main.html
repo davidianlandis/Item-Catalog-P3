@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<link href='//fonts.googleapis.com/css?family=Roboto:400,300,700' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+		<link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles.css') }}">
+        <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+	</head>
+	<body>
+		<div class="container">
+			{% block content %}
+			{% endblock %}
+		</div>
+        
+        
+        
+        <nav class="navbar navbar-fixed-bottom">
+            <div class="container-fluid">
+                <div class="small navbar-right">
+                    catalog app created by david ian landis for udacity full stack web developer nanodegree</li>
+                </div>
+            <div>&nbsp;</div>
+            </div>
+        </nav>
+	</body>
+</html>
